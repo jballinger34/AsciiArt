@@ -6,10 +6,10 @@ const char *ramp = "@%#*+=:.";
 const int ramp_len = 8;
 
 
-int main(int argc, char **argv){
+int printAscii(char *path){
 	int width, height, channels;
 
-	unsigned char *img = stbi_load("image.png", &width, &height, &channels, 0);
+	unsigned char *img = stbi_load(path, &width, &height, &channels, 0);
 	if(!img){
 		printf("Failed to load image\n");
 		return 1;
@@ -83,6 +83,14 @@ int main(int argc, char **argv){
 
 
 
+int main(int argc, char **argv){
+	if(argc == 0){
+		printf("Usage: asciiart <image_path>\n");
+		return 1;
+	}
+	char *path = argv[1];
+	return printAscii(path);
+}
 
 
 
